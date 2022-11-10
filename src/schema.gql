@@ -1,0 +1,100 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Owner {
+  id: Int!
+  name: String!
+  email: String
+  password: String
+  pets: [Pet!]
+  role: String
+}
+
+type Type {
+  id: Int!
+  type: String!
+}
+
+type Pet {
+  id: Int!
+  name: String!
+  ownerId: Int!
+  owner: Owner!
+  types: [Type!]
+}
+
+type OwnerDto {
+  id: Int!
+  name: String!
+  email: String!
+  role: String!
+  access_token: String!
+}
+
+type Query {
+  owners: [Owner!]!
+  login(loginOwnerInput: LoginOwnerIntput!): OwnerDto!
+  owner(id: Int!): Owner!
+  getPet(id: Int!): Pet!
+  pets: [Pet!]!
+  getPetByCurrentUser: [Pet!]!
+  types: [Type!]!
+  type(id: Int!): Type!
+}
+
+input LoginOwnerIntput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  signup(createOwnerInput: CreateOwnerInput!): Owner!
+  updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner!
+  deleteOwner(id: Int!): Owner!
+  updateCurrentOwner(UpdateOwnerCurrent: UpdateCurrentOwner!): Owner!
+  createPet(createPetInput: CreatePetInput!): Pet!
+  createPetByCurrentUser(createPetInput: CreatePetCurrent!): Pet!
+  deletePet(id: Int!): Pet!
+  deletePetToCurrent(id: Int!): Pet!
+  createType(type: String!): Type!
+  updateType(updateTypeInput: UpdateTypeInput!): Type!
+  removeType(id: Int!): Type!
+}
+
+input CreateOwnerInput {
+  name: String!
+  email: String!
+  password: String!
+  role: String
+}
+
+input UpdateOwnerInput {
+  name: String
+  email: String
+  password: String
+  role: String
+  id: Int!
+}
+
+input UpdateCurrentOwner {
+  name: String!
+  email: String!
+}
+
+input CreatePetInput {
+  name: String!
+  types: [Float!]
+  ownerId: Int!
+}
+
+input CreatePetCurrent {
+  name: String!
+  types: [Float!]
+}
+
+input UpdateTypeInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
